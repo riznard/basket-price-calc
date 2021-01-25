@@ -17,6 +17,7 @@ namespace BasketPriceCalculator.Services
 
         public virtual decimal CalculateTotal()
         {
+            // this is never null, as per interface specs
             var basketItems = _repository.GetAll();
             return basketItems.Sum(x => x.Product.Price * x.Quantity);
         }

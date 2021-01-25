@@ -6,7 +6,7 @@ using System.Text;
 
 namespace BasketPriceCalculator.Services
 {
-    public class BasketPriceCalculatorWithOffers : BasketPriceCalculator
+    public class BasketPriceCalculatorWithOffers : BasketPriceCalculator, IBasketPriceCalculatorWithOffers
     {
         public BasketPriceCalculatorWithOffers(IBasketRepository repository)
             : base(repository) { }
