@@ -11,8 +11,8 @@ namespace BasketPriceCalculator.Tests.Repositories
     {
         private BasketRepository _sut;
 
-        [OneTimeSetUp]
-        public void OneTimeSetUp()
+        [SetUp]
+        public void Setup()
         {
             _sut = new BasketRepository();
         }
