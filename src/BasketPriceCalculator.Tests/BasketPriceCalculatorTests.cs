@@ -72,5 +72,24 @@ namespace BasketPriceCalculator.Tests
 
             Assert.That(result, Is.EqualTo(3.1m));
         }
+
+        [Test]
+        public void Calculate_FourMilk_ReturnsNonZeroTotal()
+        {
+            var repositoryMock = new Mock<IBasketRepository>();
+            repositoryMock
+                .Setup(i => i.GetAll())
+                .Returns(
+                    new List<BasketItem>
+                    {
+                        new BasketItem { Product=new Product{ Name="Milk", Price=1.0m }, Quantity=4 }
+                    }
+                );
+
+            _sut = new BasketPriceCalculatorService(repositoryMock.Object);
+            var result = _sut.CalculateTotal();
+
+            Assert.That(result, Is.EqualTo(3.45m));
+        }
     }
 }
