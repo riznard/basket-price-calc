@@ -1,4 +1,5 @@
 ﻿using BasketPriceCalculator.Entities;
+using BasketPriceCalculator.Exceptions;
 using BasketPriceCalculator.Repositories;
 using NUnit.Framework;
 using System;
@@ -81,10 +82,10 @@ namespace BasketPriceCalculator.Tests.Repositories
             Action<BasketItem> resultFunction = i => _sut.Add(i);
 
             Assert.That(() => resultFunction(basketItem),
-                Throws.TypeOf<ArgumentException>()
+                Throws.TypeOf<DuplicateBasketItemException>()
                     .With
                     .Message
-                    .Contains("Can't insert duplicate items."));
+                    .Contains("This item is already in the basket."));
         }
     }
 }

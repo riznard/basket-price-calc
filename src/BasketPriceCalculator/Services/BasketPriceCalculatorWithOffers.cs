@@ -48,7 +48,6 @@ namespace BasketPriceCalculator.Services
                 while (i < remainderMilk && i < offerMultiplier)
                 {
                     result -= basketMilkItem.Product.Price;
-                    result += basketMilkItem.Product.Price * 0.0m;
                     i++;
                 }
             }
