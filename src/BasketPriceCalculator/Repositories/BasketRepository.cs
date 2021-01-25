@@ -10,6 +10,8 @@ namespace BasketPriceCalculator.Repositories
         private IList<BasketItem> items = new List<BasketItem>();
         public void Add(BasketItem item)
         {
+            if (item.Product == null)
+                throw new ArgumentException("Product must not be null.");
             throw new ArgumentException("Item quantity must be positive.");
         }
 
