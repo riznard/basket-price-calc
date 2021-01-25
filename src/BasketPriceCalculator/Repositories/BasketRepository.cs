@@ -1,4 +1,5 @@
 ﻿using BasketPriceCalculator.Entities;
+using BasketPriceCalculator.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +18,7 @@ namespace BasketPriceCalculator.Repositories
             else if (item.Quantity <= 0)
                 throw new ArgumentException("Item quantity must be positive.");
             else if (_items.Any(x => x.Product.Name == item.Product.Name))
-                throw new ArgumentException("Can't insert duplicate items.");
+                throw new DuplicateBasketItemException("This item is already in the basket.");
 
             _items.Add(item);
             return Task.CompletedTask;

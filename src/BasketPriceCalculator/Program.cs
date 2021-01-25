@@ -1,4 +1,5 @@
 ﻿using BasketPriceCalculator.Entities;
+using BasketPriceCalculator.Exceptions;
 using BasketPriceCalculator.Repositories;
 using BasketPriceCalculator.Services;
 using Microsoft.Extensions.DependencyInjection;
@@ -20,20 +21,58 @@ namespace BasketPriceCalculator
             var basketPriceCalculator = provider.GetRequiredService<IBasketPriceCalculator>();
             var basketPriceCalculatorWithOffers = provider.GetRequiredService<IBasketPriceCalculatorWithOffers>();
 
-            var products = productRepository.GetAll();
-            Console.WriteLine("Please select one of the following products:");
-            
+            var products = productRepository.GetAll().Result;
 
-            /* 
-            The Product property from a BasketItem should always be 
-            populated via the IProductRepository implementation
-            as per example below. This way we're always working with valid
-            products.
-            */
-            var product = productRepository.Get("Butter").Result;
-            var basketItem = new BasketItem { Product = product, Quantity = 1 };
-            basketRepository.Add(basketItem);
-            var result = basketPriceCalculator.CalculateTotal();
+            while (true)
+            {
+                Console.WriteLine("Please choose (only integer):");
+                var i = 1;
+
+                foreach (var product in products)
+                {
+                    Console.WriteLine($"{i}. {product.Name}");
+                    i++;
+                }
+                Console.WriteLine($"{i}. Calculate total");
+
+                try
+                {
+                    var selectedOptionValue = Int32.Parse(Console.ReadLine());
+
+                    if (selectedOptionValue == 4)
+                    {
+                        var basketTotalSum = basketPriceCalculatorWithOffers.CalculateTotal();
+                        Console.WriteLine($"The basket total sum is: £{basketTotalSum}");
+                        Console.WriteLine("Please press <enter> to exit the program.");
+                        Console.ReadLine();
+                        break;
+                    }
+
+                    var selectedProduct = products[selectedOptionValue - 1];
+
+                    Console.WriteLine("Please enter the product quantity (integer):");
+                    var quantity = Int32.Parse(Console.ReadLine());
+
+                    var basketItem = new BasketItem
+                    {
+                        Product = selectedProduct,
+                        Quantity = quantity
+                    };
+                    basketRepository.Add(basketItem);
+                }
+                catch (FormatException ex)
+                {
+                    Console.WriteLine("Erroneous input. Please enter just the number (without the dot).");
+                }
+                catch (DuplicateBasketItemException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Some other bloody error.");
+                }
+            }
         }
 
         static IHostBuilder CreateHostBuilder(string[] args) =>
