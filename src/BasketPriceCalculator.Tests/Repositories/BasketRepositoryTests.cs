@@ -66,5 +66,24 @@ namespace BasketPriceCalculator.Tests.Repositories
 
             Assert.That(() => resultFunction(basketItem), Throws.Nothing);
         }
+
+        [Test]
+        public void Add_ExistingProduct_ArgumentException()
+        {
+            var basketItem = new BasketItem
+            {
+                Product = new Product { Name = "Butter", Price = 0.8m },
+                Quantity = 1
+            };
+            _sut.Add(basketItem);
+
+            Action<BasketItem> resultFunction = i => _sut.Add(i);
+
+            Assert.That(() => resultFunction(basketItem),
+                Throws.TypeOf<ArgumentException>()
+                    .With
+                    .Message
+                    .Contains("Can't insert duplicate items."));
+        }
     }
 }
