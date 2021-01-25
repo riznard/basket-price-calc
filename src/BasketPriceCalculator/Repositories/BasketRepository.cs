@@ -7,6 +7,7 @@ namespace BasketPriceCalculator.Repositories
 {
     public class BasketRepository : IBasketRepository
     {
+        private IList<BasketItem> items = new List<BasketItem>();
         public void Add(BasketItem item)
         {
             throw new NotImplementedException();
