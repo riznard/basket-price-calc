@@ -44,7 +44,7 @@ namespace BasketPriceCalculator.Tests
                 .Returns(
                     new List<BasketItem>
                     {
-                        new BasketItem { Product=new Product{ Name="Milk", Price=1.0m }, Quantity=4 }
+                        new BasketItem { Product=new Product{ Name="Milk", Price=1.15m }, Quantity=4 }
                     }
                 );
 
