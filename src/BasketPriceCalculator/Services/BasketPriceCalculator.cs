@@ -25,6 +25,8 @@ namespace BasketPriceCalculator.Services
                 return 2.95m;
             else if (basketItems.FirstOrDefault(x => x.Product.Name == "Bread")?.Quantity == 2)
                 return 3.1m;
+            else if (basketItems.FirstOrDefault(x => x.Product.Name == "Milk")?.Quantity == 4)
+                return 3.45m;
             else
                 return -1.0m;
         }
