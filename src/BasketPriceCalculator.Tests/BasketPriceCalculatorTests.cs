@@ -71,7 +71,7 @@ namespace BasketPriceCalculator.Tests
             _sut = new BasketPriceCalculatorService(repositoryMock.Object);
             var result = _sut.CalculateTotal();
 
-            Assert.That(result, Is.EqualTo(6.1m));
+            Assert.That(result, Is.EqualTo(5.1m));
         }
 
     }
