@@ -1,11 +1,15 @@
 using NUnit.Framework;
-using BasketPriceCalculatorService = 
+using Moq;
+using BasketPriceCalculatorService = BasketPriceCalculator.Services.BasketPriceCalculator;
+using BasketPriceCalculator.Repositories;
+using BasketPriceCalculator.Entities;
+using System.Collections.Generic;
 
 namespace BasketPriceCalculator.Tests
 {
     public class BasketPriceCalculatorTests
     {
-        private Bas
+        private BasketPriceCalculatorService _sut;
 
         [SetUp]
         public void Setup()
@@ -13,9 +17,19 @@ namespace BasketPriceCalculator.Tests
         }
 
         [Test]
-        public void ()
+        public void Calculate_EmptyBasket_ReturnsZeroTotal()
         {
-            Assert.Pass();
+            var repositoryMock = new Mock<IBasketRepository>();
+            repositoryMock
+                .Setup(i => i.GetAll())
+                .Returns(
+                    new List<BasketItem>()
+                );
+
+            _sut = new BasketPriceCalculatorService(repositoryMock.Object);
+            var result  = _sut.CalculateTotal();
+
+            Assert.That(result, Is.Zero);
         }
     }
 }
