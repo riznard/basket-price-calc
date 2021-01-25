@@ -16,7 +16,7 @@ namespace BasketPriceCalculator.Services
 
         public decimal CalculateTotal()
         {
-            return -1.0m;
+            return 0.0m;
         }
     }
 }
