@@ -15,7 +15,7 @@ namespace BasketPriceCalculator.Repositories
             else if(item.Quantity <= 0)
                 throw new ArgumentException("Item quantity must be positive.");
 
-            throw new NotImplementedException();
+            items.Add(item);
         }
 
         public IList<BasketItem> GetAll()
