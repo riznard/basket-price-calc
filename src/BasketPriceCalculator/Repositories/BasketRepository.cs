@@ -22,12 +22,14 @@ namespace BasketPriceCalculator.Repositories
 
         public IList<BasketItem> GetAll()
         {
-            throw new NotImplementedException();
+            return items;
         }
 
         public void Remove(BasketItem item)
         {
-            throw new NotImplementedException();
+            if (!items.Any(x => x.Product.Name == item.Product.Name))
+                throw new ArgumentException("This item doesn't exist");
+            items.Remove(item);
         }
     }
 }
