@@ -24,7 +24,7 @@ namespace BasketPriceCalculator.Tests.Repositories
         {
             var result = _sut.Get(productName);
 
-            Assert.That(result, Is.EqualTo(null));
+            Assert.That(result, Is.Null);
         }
 
         [Test]

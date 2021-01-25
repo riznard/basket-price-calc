@@ -17,7 +17,7 @@ namespace BasketPriceCalculator.Repositories
 
         public Product Get(string name)
         {
-            return null;
+            return _products.FirstOrDefault(x => x.Name == name);
         }
     }
 }
