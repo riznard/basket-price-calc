@@ -19,11 +19,25 @@ namespace BasketPriceCalculator.Tests.Repositories
         [Test]
         [TestCase("")]
         [TestCase(null)]
-        public void Get_NameEmptyOrNull_Null(string productName)
+        [TestCase("invalidName")]
+        public void Get_NameEmptyOrNullOrInvalid_Null(string productName)
         {
             var result = _sut.Get(productName);
 
             Assert.That(result, Is.EqualTo(null));
+        }
+
+        [Test]
+        [TestCase("Butter")]
+        [TestCase("Bread")]
+        [TestCase("Milk")]
+        public void Get_ValidName_Product(string productName)
+        {
+            var result = _sut.Get(productName);
+
+            Assert.That(result, Is.Not.Null);
+            Assert.That(result.Name, Is.EqualTo(productName));
+            Assert.That(result.Price, Is.Not.Zero);
         }
     }
 }
