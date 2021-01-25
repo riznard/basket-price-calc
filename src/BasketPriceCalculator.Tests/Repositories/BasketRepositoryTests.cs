@@ -51,7 +51,20 @@ namespace BasketPriceCalculator.Tests.Repositories
                     .With
                     .Message
                     .Contains("Product must not be null."));
+        }
 
+        [Test]
+        public void Add_ValidProduct_NoException()
+        {
+            var basketItem = new BasketItem
+            {
+                Product = new Product { Name = "Butter", Price = 0.8m },
+                Quantity = 1
+            };
+
+            Action<BasketItem> resultFunction = i => _sut.Add(i);
+
+            Assert.That(() => resultFunction(basketItem), Throws.Nothing);
         }
     }
 }

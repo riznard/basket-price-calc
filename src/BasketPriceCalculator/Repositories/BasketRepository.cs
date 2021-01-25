@@ -12,7 +12,10 @@ namespace BasketPriceCalculator.Repositories
         {
             if (item.Product == null)
                 throw new ArgumentException("Product must not be null.");
-            throw new ArgumentException("Item quantity must be positive.");
+            else if(item.Quantity <= 0)
+                throw new ArgumentException("Item quantity must be positive.");
+
+            throw new NotImplementedException();
         }
 
         public IList<BasketItem> GetAll()
