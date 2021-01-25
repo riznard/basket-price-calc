@@ -34,5 +34,24 @@ namespace BasketPriceCalculator.Tests.Repositories
                     .Message
                     .Contains("Item quantity must be positive."));
         }
+
+        [Test]
+        public void Add_NullProduct_ArgumentException()
+        {
+            var basketItem = new BasketItem
+            {
+                Product = null,
+                Quantity = 0
+            };
+
+            Action<BasketItem> resultFunction = i => _sut.Add(i);
+
+            Assert.That(() => resultFunction(basketItem),
+                Throws.TypeOf<ArgumentException>()
+                    .With
+                    .Message
+                    .Contains("Product must not be null."));
+
+        }
     }
 }
