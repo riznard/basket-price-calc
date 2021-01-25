@@ -16,7 +16,7 @@ namespace BasketPriceCalculator.Services.Tests
         private BasketPriceCalculatorWithOffersService _sut;
 
         [Test]
-        public void Calculate_TwoButterTwoBread_ReturnsNonZeroTotalWithDiscount()
+        public void Calculate_TwoButterTwoBread_NonZeroTotalWithDiscount()
         {
             var repositoryMock = new Mock<IBasketRepository>();
             repositoryMock
@@ -36,7 +36,7 @@ namespace BasketPriceCalculator.Services.Tests
         }
 
         [Test]
-        public void Calculate_FourMilk_ReturnsNonZeroTotalWithDiscount()
+        public void Calculate_FourMilk_NonZeroTotalWithDiscount()
         {
             var repositoryMock = new Mock<IBasketRepository>();
             repositoryMock
@@ -55,7 +55,7 @@ namespace BasketPriceCalculator.Services.Tests
         }
 
         [Test]
-        public void Calculate_TwoButterOneBreadEightMilk_ReturnsNonZeroTotalWithDiscount()
+        public void Calculate_TwoButterOneBreadEightMilk_NonZeroTotalWithDiscount()
         {
             var repositoryMock = new Mock<IBasketRepository>();
             repositoryMock
@@ -77,7 +77,7 @@ namespace BasketPriceCalculator.Services.Tests
         }
 
         [Test]
-        public void Calculate_OneButterOneMilkOneBread_ReturnsNonZeroTotalWithoutDiscount()
+        public void Calculate_OneButterOneMilkOneBread_NonZeroTotalWithoutDiscount()
         {
             var repositoryMock = new Mock<IBasketRepository>();
             repositoryMock
@@ -98,7 +98,7 @@ namespace BasketPriceCalculator.Services.Tests
         }
 
         [Test]
-        public void Calculate_OneButterTwoBreadTwoMilk_ReturnsNonZeroTotalWithoutDiscount()
+        public void Calculate_OneButterTwoBreadTwoMilk_NonZeroTotalWithoutDiscount()
         {
             var repositoryMock = new Mock<IBasketRepository>();
             repositoryMock

@@ -12,7 +12,7 @@ namespace BasketPriceCalculator.Services.Tests
         private BasketPriceCalculatorService _sut;
 
         [Test]
-        public void Calculate_EmptyBasket_ReturnsZeroTotal()
+        public void Calculate_EmptyBasket_ZeroTotal()
         {
             var repositoryMock = new Mock<IBasketRepository>();
             repositoryMock
@@ -28,7 +28,7 @@ namespace BasketPriceCalculator.Services.Tests
         }
 
         [Test]
-        public void Calculate_OneButterOneMilkOneBread_ReturnsNonZeroTotal()
+        public void Calculate_OneButterOneMilkOneBread_NonZeroTotal()
         {
             var repositoryMock = new Mock<IBasketRepository>();
             repositoryMock
@@ -49,7 +49,7 @@ namespace BasketPriceCalculator.Services.Tests
         }
 
         [Test]
-        public void Calculate_OneButterTwoBreadTwoMilk_ReturnsNonZeroTotal()
+        public void Calculate_OneButterTwoBreadTwoMilk_NonZeroTotal()
         {
             var repositoryMock = new Mock<IBasketRepository>();
             repositoryMock
@@ -70,7 +70,7 @@ namespace BasketPriceCalculator.Services.Tests
         }
 
         [Test]
-        public void Calculate_TwoButterTwoBread_ReturnsNonZeroTotalWithoutDiscount()
+        public void Calculate_TwoButterTwoBread_NonZeroTotalWithoutDiscount()
         {
             var repositoryMock = new Mock<IBasketRepository>();
             repositoryMock
@@ -90,7 +90,7 @@ namespace BasketPriceCalculator.Services.Tests
         }
 
         [Test]
-        public void Calculate_FourMilk_ReturnsNonZeroTotalWithoutDiscount()
+        public void Calculate_FourMilk_NonZeroTotalWithoutDiscount()
         {
             var repositoryMock = new Mock<IBasketRepository>();
             repositoryMock
@@ -109,7 +109,7 @@ namespace BasketPriceCalculator.Services.Tests
         }
 
         [Test]
-        public void Calculate_TwoButterOneBreadEightMilk_ReturnsNonZeroTotalWithoutDiscount()
+        public void Calculate_TwoButterOneBreadEightMilk_NonZeroTotalWithoutDiscount()
         {
             var repositoryMock = new Mock<IBasketRepository>();
             repositoryMock
