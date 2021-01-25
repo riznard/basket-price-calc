@@ -3,33 +3,38 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace BasketPriceCalculator.Repositories
 {
     public class BasketRepository : IBasketRepository
     {
-        private IList<BasketItem> items = new List<BasketItem>();
-        public void Add(BasketItem item)
+        private IList<BasketItem> _items = new List<BasketItem>();
+        public Task Add(BasketItem item)
         {
             if (item.Product == null)
                 throw new ArgumentException("Product must not be null.");
             else if (item.Quantity <= 0)
                 throw new ArgumentException("Item quantity must be positive.");
-            else if (items.Any(x => x.Product.Name == item.Product.Name))
+            else if (_items.Any(x => x.Product.Name == item.Product.Name))
                 throw new ArgumentException("Can't insert duplicate items.");
-            items.Add(item);
+
+            _items.Add(item);
+            return Task.CompletedTask;
         }
 
-        public IList<BasketItem> GetAll()
+        public Task<IList<BasketItem>> GetAll()
         {
-            return items;
+            return Task.FromResult(_items);
         }
 
-        public void Remove(BasketItem item)
+        public Task Remove(BasketItem item)
         {
-            if (!items.Any(x => x.Product.Name == item.Product.Name))
+            if (!_items.Any(x => x.Product.Name == item.Product.Name))
                 throw new ArgumentException("This item doesn't exist");
-            items.Remove(item);
+
+            _items.Remove(item);
+            return Task.CompletedTask;
         }
     }
 }

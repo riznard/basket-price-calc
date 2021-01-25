@@ -20,13 +20,17 @@ namespace BasketPriceCalculator
             var basketPriceCalculator = provider.GetRequiredService<IBasketPriceCalculator>();
             var basketPriceCalculatorWithOffers = provider.GetRequiredService<IBasketPriceCalculatorWithOffers>();
 
+            var products = productRepository.GetAll();
+            Console.WriteLine("Please select one of the following products:");
+            
+
             /* 
             The Product property from a BasketItem should always be 
             populated via the IProductRepository implementation
             as per example below. This way we're always working with valid
             products.
             */
-            var product = productRepository.Get("Butter");
+            var product = productRepository.Get("Butter").Result;
             var basketItem = new BasketItem { Product = product, Quantity = 1 };
             basketRepository.Add(basketItem);
             var result = basketPriceCalculator.CalculateTotal();

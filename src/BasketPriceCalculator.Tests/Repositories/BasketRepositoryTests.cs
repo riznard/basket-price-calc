@@ -4,6 +4,7 @@ using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace BasketPriceCalculator.Tests.Repositories
 {
@@ -62,9 +63,9 @@ namespace BasketPriceCalculator.Tests.Repositories
                 Quantity = 1
             };
 
-            Action<BasketItem> resultFunction = i => _sut.Add(i);
+            var result = _sut.Add(basketItem);
 
-            Assert.That(() => resultFunction(basketItem), Throws.Nothing);
+            Assert.That(result, Is.EqualTo(Task.CompletedTask));
         }
 
         [Test]

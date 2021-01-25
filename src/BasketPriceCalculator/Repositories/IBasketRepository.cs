@@ -2,16 +2,17 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace BasketPriceCalculator.Repositories
 {
 
     public interface IBasketRepository
     {
-        void Add(BasketItem item);
-        void Remove(BasketItem item);
+        Task Add(BasketItem item);
+        Task Remove(BasketItem item);
 
         // can return an empty list, but not null
-        IList<BasketItem> GetAll();
+        Task<IList<BasketItem>> GetAll();
     }
 }

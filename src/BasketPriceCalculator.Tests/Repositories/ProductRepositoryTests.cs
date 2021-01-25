@@ -3,6 +3,7 @@ using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace BasketPriceCalculator.Tests.Repositories
 {
@@ -20,9 +21,9 @@ namespace BasketPriceCalculator.Tests.Repositories
         [TestCase("")]
         [TestCase(null)]
         [TestCase("invalidName")]
-        public void Get_NameEmptyOrNullOrInvalid_Null(string productName)
+        public async Task Get_NameEmptyOrNullOrInvalid_Null(string productName)
         {
-            var result = _sut.Get(productName);
+            var result = await _sut.Get(productName);
 
             Assert.That(result, Is.Null);
         }
@@ -31,9 +32,9 @@ namespace BasketPriceCalculator.Tests.Repositories
         [TestCase("Butter")]
         [TestCase("Bread")]
         [TestCase("Milk")]
-        public void Get_ValidName_Product(string productName)
+        public async Task Get_ValidName_Product(string productName)
         {
-            var result = _sut.Get(productName);
+            var result = await _sut.Get(productName);
 
             Assert.That(result, Is.Not.Null);
             Assert.That(result.Name, Is.EqualTo(productName));

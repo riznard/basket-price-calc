@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace BasketPriceCalculator.Repositories
 {
@@ -15,9 +16,14 @@ namespace BasketPriceCalculator.Repositories
             new Product {Name="Milk", Price=1.15m}
         };
 
-        public Product Get(string name)
+        public Task<Product> Get(string name)
         {
-            return _products.FirstOrDefault(x => x.Name == name);
+            return Task.FromResult(_products.FirstOrDefault(x => x.Name == name));
+        }
+
+        public Task<IList<Product>> GetAll()
+        {
+            return Task.FromResult(_products);   
         }
     }
 }

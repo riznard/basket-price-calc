@@ -4,6 +4,7 @@ using BasketPriceCalculatorService = BasketPriceCalculator.Services.BasketPriceC
 using BasketPriceCalculator.Repositories;
 using BasketPriceCalculator.Entities;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace BasketPriceCalculator.Services.Tests
 {
@@ -18,7 +19,7 @@ namespace BasketPriceCalculator.Services.Tests
             repositoryMock
                 .Setup(i => i.GetAll())
                 .Returns(
-                    new List<BasketItem>()
+                    Task.FromResult((IList<BasketItem>)new List<BasketItem>())
                 );
 
             _sut = new BasketPriceCalculatorService(repositoryMock.Object);
@@ -34,12 +35,12 @@ namespace BasketPriceCalculator.Services.Tests
             repositoryMock
                 .Setup(i => i.GetAll())
                 .Returns(
-                    new List<BasketItem>
+                    Task.FromResult((IList<BasketItem>)new List<BasketItem>
                     {
                         new BasketItem { Product=new Product{ Name="Bread", Price=1.0m }, Quantity=1 },
                         new BasketItem { Product=new Product{ Name="Milk", Price=1.15m }, Quantity=1 },
                         new BasketItem { Product=new Product{ Name="Butter", Price=0.8m }, Quantity=1 }
-                    }
+                    })
                 );
 
             _sut = new BasketPriceCalculatorService(repositoryMock.Object);
@@ -55,12 +56,12 @@ namespace BasketPriceCalculator.Services.Tests
             repositoryMock
                 .Setup(i => i.GetAll())
                 .Returns(
-                    new List<BasketItem>
+                    Task.FromResult((IList<BasketItem>)new List<BasketItem>
                     {
                         new BasketItem { Product=new Product{ Name="Bread", Price=1.0m }, Quantity=2 },
                         new BasketItem { Product=new Product{ Name="Milk", Price=1.15m }, Quantity=2 },
                         new BasketItem { Product=new Product{ Name="Butter", Price=0.8m }, Quantity=1 }
-                    }
+                    })
                 );
 
             _sut = new BasketPriceCalculatorService(repositoryMock.Object);
@@ -76,11 +77,11 @@ namespace BasketPriceCalculator.Services.Tests
             repositoryMock
                 .Setup(i => i.GetAll())
                 .Returns(
-                    new List<BasketItem>
+                    Task.FromResult((IList<BasketItem>)new List<BasketItem>
                     {
                         new BasketItem { Product=new Product{ Name="Bread", Price=1.0m }, Quantity=2 },
                         new BasketItem { Product=new Product{ Name="Butter", Price=0.8m }, Quantity=2 }
-                    }
+                    })
                 );
 
             _sut = new BasketPriceCalculatorService(repositoryMock.Object);
@@ -96,10 +97,10 @@ namespace BasketPriceCalculator.Services.Tests
             repositoryMock
                 .Setup(i => i.GetAll())
                 .Returns(
-                    new List<BasketItem>
+                    Task.FromResult((IList<BasketItem>)new List<BasketItem>
                     {
                         new BasketItem { Product=new Product{ Name="Milk", Price=1.15m }, Quantity=4 }
-                    }
+                    })
                 );
 
             _sut = new BasketPriceCalculatorService(repositoryMock.Object);
@@ -115,13 +116,13 @@ namespace BasketPriceCalculator.Services.Tests
             repositoryMock
                 .Setup(i => i.GetAll())
                 .Returns(
-                    new List<BasketItem>
+                    Task.FromResult((IList<BasketItem>)new List<BasketItem>
                     {
                         new BasketItem { Product=new Product{ Name="Bread", Price=1.0m }, Quantity=1 },
                         new BasketItem { Product=new Product{ Name="Milk", Price=1.15m }, Quantity=8 },
                         new BasketItem { Product=new Product{ Name="Butter", Price=0.8m }, Quantity=2 }
 
-                    }
+                    })
                 );
 
             _sut = new BasketPriceCalculatorService(repositoryMock.Object);

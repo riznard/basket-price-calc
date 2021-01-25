@@ -14,7 +14,7 @@ namespace BasketPriceCalculator.Services
         public override decimal CalculateTotal()
         {
             var result = base.CalculateTotal();
-            var basketItems = _repository.GetAll();
+            var basketItems = _repository.GetAll().Result;
 
             var basketButterItem = basketItems.FirstOrDefault(x => x.Product.Name == "Butter");
             var basketMilkItem = basketItems.FirstOrDefault(x => x.Product.Name == "Milk");
