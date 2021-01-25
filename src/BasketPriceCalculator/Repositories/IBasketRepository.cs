@@ -9,6 +9,6 @@ namespace BasketPriceCalculator.Repositories
     {
         void Add(BasketItem item);
         void Remove(BasketItem item);
-        IEnumerable<BasketItem> GetAll();
+        IList<BasketItem> GetAll();
     }
 }

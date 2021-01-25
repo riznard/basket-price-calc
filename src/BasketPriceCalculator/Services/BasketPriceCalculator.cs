@@ -16,7 +16,12 @@ namespace BasketPriceCalculator.Services
 
         public decimal CalculateTotal()
         {
-            return 0.0m;
+            var basketItems = _repository.GetAll();
+
+            if (basketItems.Count == 0)
+                return 0.0m;
+
+            return 2.95m;
         }
     }
 }

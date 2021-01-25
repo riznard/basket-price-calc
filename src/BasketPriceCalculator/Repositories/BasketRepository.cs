@@ -12,7 +12,7 @@ namespace BasketPriceCalculator.Repositories
             throw new NotImplementedException();
         }
 
-        public IEnumerable<BasketItem> GetAll()
+        public IList<BasketItem> GetAll()
         {
             throw new NotImplementedException();
         }
