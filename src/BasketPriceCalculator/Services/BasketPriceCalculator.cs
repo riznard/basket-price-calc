@@ -8,14 +8,14 @@ namespace BasketPriceCalculator.Services
 {
     public class BasketPriceCalculator : IBasketPriceCalculator
     {
-        private IBasketRepository _repository;
+        protected IBasketRepository _repository;
 
         public BasketPriceCalculator(IBasketRepository repository)
         {
             _repository = repository ?? throw new ArgumentNullException(nameof(repository));
         }
 
-        public decimal CalculateTotal()
+        public virtual decimal CalculateTotal()
         {
             var basketItems = _repository.GetAll();
 
@@ -23,12 +23,6 @@ namespace BasketPriceCalculator.Services
                 return 0.0m;
             else if (basketItems.FirstOrDefault(x => x.Product.Name == "Milk")?.Quantity == 1)
                 return 2.95m;
-            else if (basketItems.FirstOrDefault(x => x.Product.Name == "Bread")?.Quantity == 2)
-                return 3.1m;
-            else if (basketItems.FirstOrDefault(x => x.Product.Name == "Milk")?.Quantity == 4)
-                return 3.45m;
-            else if (basketItems.FirstOrDefault(x => x.Product.Name == "Milk")?.Quantity == 8)
-                return 9.0m;
             else
                 return -1.0m;
         }
